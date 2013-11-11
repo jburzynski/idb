@@ -5,6 +5,7 @@
  *
  * @author jburzynski
  */
-class MalformedUrlException extends Exception {
+class MalformedUrlException extends Exception
+{
     
 }

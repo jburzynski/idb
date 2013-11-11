@@ -5,7 +5,8 @@
  *
  * @author jburzynski
  */
-class Router {
+class Router
+{
     
 //    public function getPatterns() {
 //        return array(
@@ -19,12 +20,14 @@ class Router {
     
     protected $segments;
     
-    public function __construct() {
+    public function __construct()
+    {
         $uri = str_replace(Config::BASE_PATH, '', $_SERVER['REQUEST_URI']);
         $this->segments = explode('/', $uri);
     }
     
-    public function invokeAction() {
+    public function invokeAction()
+    {
         if (isset($this->segments[2])) {
             if (!isset($this->segments[3])) {
                 $controller = $this->segments[2];

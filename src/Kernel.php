@@ -7,7 +7,8 @@
  */
 class Kernel
 {
-    public function render() {
+    public function render()
+    {
         $router = new \Router;
         try {
             $router->invokeAction();
