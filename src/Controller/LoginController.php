@@ -26,8 +26,10 @@ class LoginController extends Controller
             }
             $message = 'Nieprawidłowy login lub hasło.';
         }
-        $content = file_get_contents('./view/login/index.php');
-        eval($content);
+        $this->render('./view/login/index.php', array(
+            'base' => $base,
+            'message' => (isset($message) ? $message : null)
+        ));
     }
     
     public function logoutAction()

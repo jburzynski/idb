@@ -11,8 +11,9 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        $content = file_get_contents('./view/home/index.php');
         $base = \Config::BASE_PATH;
-        eval($content);
+        $this->render('./view/home/index.php', array(
+            'base' => $base
+        ));
     }
 }

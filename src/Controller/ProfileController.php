@@ -22,7 +22,9 @@ class ProfileController extends Controller
             //throw new \Exception('Access denied');
         }
         $login = $loginManager->getLogin();
-        $content = file_get_contents('./view/profile/index.php');
-        eval($content);
+        $this->render('./view/profile/index.php', array(
+            'base' => $base,
+            'login' => $login
+        ));
     }
 }
