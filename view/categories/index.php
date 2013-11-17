@@ -29,6 +29,7 @@ echo "<html>
                 <div class=\"panel-body\">
                     <table class=\"table table-hover table-condensed\">
 						<tr>
+							<th>Id</th>
 							<th>Name</th>
 							<th>State</th>
 						</tr>";
@@ -36,7 +37,8 @@ echo "<html>
 					{
 						echo "
 						<tr>
-						  <td><a href=\"../category/" . $category["id"] . "\">" . $category["name"] . "</td>
+						  <td>" . $category["id"] . "</td>
+						  <td><a href=\"./categories/" . $category["id"] . "/showCategory" . "\">" . $category["name"] . "</td>
 						  <td>" . $category["state"] . "</td>
 						</tr>";
 					}
