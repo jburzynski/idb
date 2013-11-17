@@ -65,7 +65,7 @@ echo				"</table>
 						  <td>" . $book["description"] . "</td>
 						  <td>" . $book["price"] . "</td>
 						  <td>" . $book["available_amount"] . "</td>
-						  <td>" . $category["state"] . "</td>
+						  <td>" . $book["state"] . "</td>
 						</tr>";
 					}
 echo				"</table>
