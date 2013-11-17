@@ -27,6 +27,8 @@ echo "<html>
                     <h4>Kategorie</h4>
                 </div>
                 <div class=\"panel-body\">
+					<h4>Podkategorie</h4>
+					<br />
 					<table class=\"table table-hover table-condensed\">
 						<tr>
 							<th>Id</th>
