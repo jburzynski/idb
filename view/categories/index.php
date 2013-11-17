@@ -27,7 +27,20 @@ echo "<html>
                     <h4>Kategorie</h4>
                 </div>
                 <div class=\"panel-body\">
-                    Kategorie
+                    <table class=\"table table-hover table-condensed\">
+						<tr>
+							<th>Name</th>
+							<th>State</th>
+						</tr>";
+					foreach ($categoryList as $category)
+					{
+						echo "
+						<tr>
+						  <td><a href=\"../category/" . $category["id"] . "\">" . $category["name"] . "</td>
+						  <td>" . $category["state"] . "</td>
+						</tr>";
+					}
+echo				"</table>
                 </div>
             </div>
         </div>
