@@ -24,11 +24,15 @@ echo "<html>
         <div role=\"main\" class=\"container top-spaced\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading\">
-                    <h4>Profil użytkownika</h4>
+                    <h4>Profil użytkownika <a class=\"btn btn-default btn-sm pull-right\" style=\"margin-top: -5px;\" href=\"$base/index.php/login/logout\">Wyloguj ($login)</a></h4>
                 </div>
                 <div class=\"panel-body\">
-                    Login: <strong>$login</strong>
-                    <br /><a class=\"btn btn-default\" href=\"$base/index.php/login/logout\">Wyloguj</a>
+                    <div class=\"col-lg-6\">
+                        <h4>Zamówienia</h4>
+                    </div>
+                    <div class=\"col-lg-6\">
+                        <h4>Adresy</h4>
+                    </div>
                 </div>
             </div>
         </div>
