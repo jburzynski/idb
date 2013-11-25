@@ -7,7 +7,7 @@
  */
 class Router
 {
-    
+
 //    public function getPatterns() {
 //        return array(
 //            '/:controller',
@@ -15,17 +15,17 @@ class Router
 //            '/:controller/:id/:action'
 //        );
 //    }
-    
+
     const DEFAULT_CONTROLLER = 'Home';
-    
+
     protected $segments;
-    
+
     public function __construct()
     {
         $uri = str_replace(Config::BASE_PATH, '', $_SERVER['REQUEST_URI']);
         $this->segments = explode('/', $uri);
     }
-    
+
     public function invokeAction()
     {
         if (isset($this->segments[2])) {
@@ -44,15 +44,24 @@ class Router
             $controller = self::DEFAULT_CONTROLLER;
             $action = 'index';
         }
-        
+
         if (!$controller || !$action) {
             throw new MalformedUrlException('Requested URL is not valid.');
         }
-        
+
         $controller = ucfirst(strtolower($controller)) . 'Controller';
         $controller = '\Controller\\' . $controller;
-        $action = $action . 'Action';
-        
+
+        $actionSections = explode('_', $action);
+        $actionTemp = '';
+        $i = 0;
+        foreach ($actionSections as $section) {
+            $s = (0 === $i ? strtolower($section) : ucfirst(strtolower($section)));
+            $actionTemp .= $s;
+            $i++;
+        }
+        $action = $actionTemp . 'Action';
+
         $instance = new $controller;
         if (isset($param)) {
             $instance->$action($param);

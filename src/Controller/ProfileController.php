@@ -37,4 +37,24 @@ class ProfileController extends Controller
             'addresses' => $addresses
         ));
     }
+
+    public function orderDeleteAction($id)
+    {
+        $base = \Config::BASE_PATH;
+
+        $userManager = new UserManager;
+        $loginManager = new LoginManager($userManager);
+        $profileManager = new ProfileManager();
+        $user = $userManager->getUserByLogin($loginManager->getLogin());
+
+        if (!$loginManager->checkAccess(array(UserManager::ROLE_ADMIN, UserManager::ROLE_USER))) {
+            if (!($order = $profileManager->getOrder($id)) || $order['user_id'] !== $user['id']) {
+                $this->redirect($base . '/index.php/profile');
+            }
+        }
+        
+        $profileManager->deleteOrder($id);
+
+        $this->redirect($base . '/index.php/profile');
+    }
 }

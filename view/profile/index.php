@@ -28,7 +28,17 @@ echo "<html>
                 </div>
                 <div class=\"panel-body\">
                     <div class=\"col-lg-6\">
-                        <h4>Zamówienia</h4>
+                        <h4 style=\"margin-bottom: 10px;\">Zamówienia</h4>
+                            <ul style=\"width: 400px;\">";
+                            foreach ($orders as $order) {
+                                echo "<li style=\"font-weight: bold;\">{$order['amount']} PLN <a class=\"glyphicon glyphicon-remove\" href=\"$base/index.php/profile/{$order['id']}/order_delete\"></a><span class=\"pull-right\">{$order['created']}</span></li>";
+                                echo "<ul>";
+                                foreach ($order['books'] as $book) {
+                                    echo "<li>&quot;{$book['title']}&quot;<span class=\"pull-right\">{$book['amount']} x {$book['price']} PLN</span></li>";
+                                }
+                                echo "</ul>";
+                            }
+                            echo "</ul>
                     </div>
                     <div class=\"col-lg-6\">
                         <h4>Adresy</h4>
