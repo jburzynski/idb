@@ -41,7 +41,25 @@ echo "<html>
                             echo "</ul>
                     </div>
                     <div class=\"col-lg-6\">
-                        <h4>Adresy</h4>
+                        <h4 style=\"margin-bottom: 10px;\">Adresy <a class=\"btn btn-default btn-sm\" href=\"$base/index.php/profile/address_new\">Nowy</a></h4>
+                        <table class=\"table\">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ulica</th>
+                                    <th>Miasto</th>
+                                    <th>Kod pocztowy</th>
+                                    <th>Akcja</th>
+                                </tr>
+                            </thead>
+                            <tbody>";
+                                foreach ($addresses as $address) {
+                                    echo "<tr>";
+                                        echo "<td>{$address['id']}</td><td>{$address['street']} {$address['street_number']}</td><td>{$address['city']}</td><td>{$address['postal_code']}</td><td><a class=\"glyphicon glyphicon-edit\" href=\"$base/index.php/profile/{$address['id']}/address_edit\"></a> <a class=\"glyphicon glyphicon-remove\" href=\"$base/index.php/profile/{$address['id']}/address_delete\"></a></td>";
+                                    echo "</tr>";
+                                }
+                            echo "</tbody>
+                        </table>
                     </div>
                 </div>
             </div>

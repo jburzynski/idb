@@ -10,3 +10,8 @@ h1, h2, h3, h4, h5, h6 {
 a.glyphicon:hover {
     text-decoration: none;
 }
+
+.form-horizontal .form-group {
+    margin-left: 0;
+    padding-left: 0;
+}
