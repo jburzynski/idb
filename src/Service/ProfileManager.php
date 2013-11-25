@@ -16,6 +16,11 @@ class ProfileManager
         $mysqli = DBManager::getMysqli();
         /* @var $mysqli \mysqli */
         $result = $mysqli->query("SELECT * FROM order WHERE user_id=" . $userId);
+
+        if (!$result) {
+            return null;
+        }
+
         $resultsArray = array();
         while ($row = $result->fetch_assoc()) {
             $resultsArray[] = $row;
@@ -28,6 +33,11 @@ class ProfileManager
         $mysqli = DBManager::getMysqli();
         /* @var $mysqli \mysqli */
         $result = $mysqli->query("SELECT * FROM address WHERE user_id=" . $userId);
+
+        if (!$result) {
+            return null;
+        }
+        
         $resultsArray = array();
         while ($row = $result->fetch_assoc()) {
             $resultsArray[] = $row;
