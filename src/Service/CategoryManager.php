@@ -17,7 +17,7 @@ class CategoryManager
         /* @var $mysqli \mysqli */
         if ($id == NULL)
 		{
-			$result = $mysqli->query("SELECT * FROM category");
+			$result = $mysqli->query("SELECT * FROM category WHERE parent_id IS NULL");
 		}
 		else
 		{

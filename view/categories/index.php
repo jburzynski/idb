@@ -24,7 +24,7 @@ echo "<html>
         <div role=\"main\" class=\"container top-spaced\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading\">
-                    <h4>Kategorie</h4>
+                    <h4>Kategorie<a class=\"btn btn-default btn-sm pull-right\" style=\"margin-top: -5px;\" href=\"$base/index.php/login/logout\">Wyloguj ($login)</a></h4>
                 </div>
                 <div class=\"panel-body\">
                     <table class=\"table table-hover table-condensed\">

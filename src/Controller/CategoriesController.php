@@ -23,10 +23,12 @@ class CategoriesController extends Controller
             //throw new \Exception('Access denied');
         }
 		
+		$login = $loginManager->getLogin();		
 		$categoryManager = new CategoryManager();
-		$categoryList = $categoryManager->getCategories(NULL);
+		$categoryList = $categoryManager->getCategories(null);
 		$this->render('./view/categories/index.php', array(
             'base' => $base,
+			'login' => $login,
 			'categoryList' => $categoryList
         ));
     }
@@ -41,11 +43,13 @@ class CategoriesController extends Controller
             //throw new \Exception('Access denied');
         }
 		
+		$login = $loginManager->getLogin();		
 		$categoryManager = new CategoryManager();
 		$categoryList = $categoryManager->getCategories($id);
 		$bookList = $categoryManager->getBooks($id);
 		$this->render('./view/categories/showCategory.php', array(
             'base' => $base,
+			'login' => $login,
 			'categoryList' => $categoryList,
 			'bookList' => $bookList
         ));

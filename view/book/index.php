@@ -24,53 +24,45 @@ echo "<html>
         <div role=\"main\" class=\"container top-spaced\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading\">
-                    <h4>Kategorie<a class=\"btn btn-default btn-sm pull-right\" style=\"margin-top: -5px;\" href=\"$base/index.php/login/logout\">Wyloguj ($login)</a></h4>
+                    <h4>Książka <a class=\"btn btn-default btn-sm pull-right\" style=\"margin-top: -5px;\" href=\"$base/index.php/login/logout\">Wyloguj ($login)</a></h4>
                 </div>
                 <div class=\"panel-body\">
-					<h4>Podkategorie</h4>
-					<br />
-					<table class=\"table table-hover table-condensed\">
-						<tr>
-							<th>Id</th>
-							<th>Nazwa</th>
-							<th>Stan</th>
-						</tr>";
-					foreach ($categoryList as $category)
-					{
-						echo "
-						<tr>
-						  <td>" . $category["id"] . "</td>
-						  <td><a href=\"../" . $category["id"] . "/showCategory" . "\">" . $category["name"] . "</td>
-						  <td>" . $category["state"] . "</td>
-						</tr>";
-					}
-echo				"</table>
-					<h4>Książki</h4>
-					<br />
-					<table class=\"table table-hover table-condensed\">
-						<tr>
-							<th>Id</th>
-							<th>Autor</th>
-							<th>Tytuł</th>
-							<th>Opis</th>
-							<th>Ceny</th>
-							<th>Dostępność</th>
-							<th>Stan</th>
-						</tr>";
-					foreach ($bookList as $book)
-					{
-						echo "
-						<tr>
-						  <td><a href=\"$base/index.php/book/{$book['id']}/index\">" . $book["id"] . "</a></td>
-						  <td>" . $book["author"] . "</td>
-						  <td>" . $book["title"] . "</td>
-						  <td>" . $book["description"] . "</td>
-						  <td>" . $book["price"] . "</td>
-						  <td>" . $book["available_amount"] . "</td>
-						  <td>" . $book["state"] . "</td>
-						</tr>";
-					}
-echo				"</table>
+                    <div class=\"col-lg-6\">
+                        <h4 style=\"margin-bottom: 10px;\">Dane książki <a class=\"btn btn-default btn-sm\" href=\"$base/index.php/book/{$book['id']}/addToCart\">Dodaj do koszyka</a></h4>
+                        <table class=\"table\">
+                            <tbody>";
+                                echo "
+									<tr>
+										<td>Id:</td>
+										<td>{$book['id']}</td>
+									</tr>
+									<tr>
+										<td>Autor:</td>
+										<td>{$book['author']}</td>
+									</tr>
+									<tr>
+										<td>Tytuł:</td>
+										<td>{$book['title']}</td>
+									</tr>
+									<tr>
+										<td>Opis:</td>
+										<td>{$book['description']}</td>
+									</tr>
+									<tr>
+										<td>Cena:</td>
+										<td>{$book['price']}</td>
+									</tr>
+									<tr>
+										<td>Dostępność:</td>
+										<td>{$book['available_amount']}</td>
+									</tr>
+									<tr>
+										<td>Stan:</td>
+										<td>{$book['state']}</td>
+									</tr>";
+                            echo "</tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
