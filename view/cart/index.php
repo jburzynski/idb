@@ -25,42 +25,32 @@ echo "<html>
         <div role=\"main\" class=\"container top-spaced\">
             <div class=\"panel panel-default\">
                 <div class=\"panel-heading\">
-                    <h4>Książka <a class=\"btn btn-default btn-sm pull-right\" style=\"margin-top: -5px;\" href=\"$base/index.php/login/logout\">Wyloguj ($login)</a></h4>
+                    <h4>Koszyk <a class=\"btn btn-default btn-sm pull-right\" style=\"margin-top: -5px;\" href=\"$base/index.php/login/logout\">Wyloguj ($login)</a></h4>
                 </div>
                 <div class=\"panel-body\">
                     <div class=\"col-lg-6\">
-                        <h4 style=\"margin-bottom: 10px;\">Dane książki <a class=\"btn btn-default btn-sm\" href=\"$base/index.php/cart/{$book['id']}/add_to_cart\">Dodaj do koszyka</a></h4>
+                        <h4 style=\"margin-bottom: 10px;\">Książki</h4>
                         <table class=\"table\">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Autor</th>
+                                    <th>Tytuł</th>
+                                    <th>Cena</th>
+									<th>Dostępność</th>
+                                </tr>
+                            </thead>
                             <tbody>";
-                                echo "
-									<tr>
-										<td>Id:</td>
-										<td>{$book['id']}</td>
-									</tr>
-									<tr>
-										<td>Autor:</td>
-										<td>{$book['author']}</td>
-									</tr>
-									<tr>
-										<td>Tytuł:</td>
-										<td>{$book['title']}</td>
-									</tr>
-									<tr>
-										<td>Opis:</td>
-										<td>{$book['description']}</td>
-									</tr>
-									<tr>
-										<td>Cena:</td>
+								foreach ($cart as $book) {
+                                    echo "<tr>";
+                                        echo "<td>{$book['id']}</td>
+										<td>{$book['author']} {$book['title']}</td>
+										<td>{$book['title']} {$book['title']}</td>
 										<td>{$book['price']}</td>
-									</tr>
-									<tr>
-										<td>Dostępność:</td>
 										<td>{$book['available_amount']}</td>
-									</tr>
-									<tr>
-										<td>Stan:</td>
-										<td>{$book['state']}</td>
-									</tr>";
+										<td><a class=\"glyphicon glyphicon-remove\" href=\"$base/index.php/cart/{$book['id']}/delete_from_cart\"></a></td>";
+                                    echo "</tr>";
+                                }
                             echo "</tbody>
                         </table>
                     </div>

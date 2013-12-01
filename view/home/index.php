@@ -18,6 +18,7 @@ echo "<html>
                         <li><a href=\"$base/index.php/categories\">Kategorie</a></li>
                         <li><a href=\"$base/index.php/profile\">Profil użytkownika</a></li>
                     </ul>
+					<a class=\"btn btn-primary pull-right\" href=\"$base/index.php/cart\">Koszyk</a>
                 </div>
             </nav>
         </header>

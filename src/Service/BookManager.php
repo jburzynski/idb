@@ -22,5 +22,15 @@ class BookManager
         }
 
         return $result->fetch_assoc();
-    }	
+    }
+
+	public function addToCart($book)
+	{
+		if (!isset($_SESSION['cart']))
+		{
+			$_SESSION['cart']=array();
+		}
+		
+		array_push($_SESSION['cart'], $book);
+	}
 }

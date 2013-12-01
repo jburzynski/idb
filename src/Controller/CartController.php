@@ -5,32 +5,33 @@ namespace Controller;
 use Service\LoginManager;
 use Service\UserManager;
 use Service\BookManager;
+use Service\CartManager;
 
 /**
  * profile controller
  *
  * @author wszubryt
  */
-class BookController extends Controller
-{
-    public function indexAction($id)
+class CartController extends Controller
+{	
+	public function indexAction()
     {
         $base = \Config::BASE_PATH;
 
         $userManager = new UserManager;
-        $loginManager = new LoginManager($userManager);
-        $bookManager = new BookManager();
+        $loginManager = new LoginManager($userManager);		
+		$cartManager = new CartManager();
 
         if (!$loginManager->checkAccess(array(UserManager::ROLE_ADMIN, UserManager::ROLE_USER))) {
             $this->redirect($base . '/index.php/login');
         }
 
         $login = $loginManager->getLogin();
-		$book = $bookManager->getBook($id);
-        $this->render('./view/book/index.php', array(
+		$cart = $cartManager->getCart();
+        $this->render('./view/cart/index.php', array(
             'base' => $base,
 			'login' => $login,
-            'book' => $book
+			'cart' => $cart
         ));
     }
 	
@@ -41,6 +42,7 @@ class BookController extends Controller
         $userManager = new UserManager;
         $loginManager = new LoginManager($userManager);
         $bookManager = new BookManager();
+		$cartManager = new CartManager();
 
         if (!$loginManager->checkAccess(array(UserManager::ROLE_ADMIN, UserManager::ROLE_USER))) {
             $this->redirect($base . '/index.php/login');
@@ -48,11 +50,38 @@ class BookController extends Controller
 
         $login = $loginManager->getLogin();
 		$book = $bookManager->getBook($id);
-		$bookManager->addToCart($book);
+		$cartManager->addToCart($book);
+		$cart = $cartManager->getCart();
 		
-        $this->render('./view/book/cart.php', array(
+        $this->render('./view/cart/index.php', array(
             'base' => $base,
-			'login' => $login
+			'login' => $login,
+			'cart' => $cart
+        ));
+    }
+	
+	public function deleteFromCartAction($id)
+    {
+        $base = \Config::BASE_PATH;
+
+        $userManager = new UserManager;
+        $loginManager = new LoginManager($userManager);
+        $bookManager = new BookManager();
+		$cartManager = new CartManager();
+
+        if (!$loginManager->checkAccess(array(UserManager::ROLE_ADMIN, UserManager::ROLE_USER))) {
+            $this->redirect($base . '/index.php/login');
+        }
+
+        $login = $loginManager->getLogin();
+		$book = $bookManager->getBook($id);
+		$cartManager->deleteFromCart($book);
+		$cart = $cartManager->getCart();
+		
+        $this->render('./view/cart/index.php', array(
+            'base' => $base,
+			'login' => $login,
+			'cart' => $cart
         ));
     }
 	
