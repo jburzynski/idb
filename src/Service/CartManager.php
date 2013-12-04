@@ -48,4 +48,12 @@ class CartManager
 				
 		$_SESSION['cart']=$newCart;
 	}
+	
+	public function clearCart()
+	{
+		if (isset($_SESSION['cart']))
+		{
+			$_SESSION['cart']=array();
+		}
+	}
 }

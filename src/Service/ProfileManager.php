@@ -140,4 +140,53 @@ class ProfileManager
         $stmt->execute();
         $stmt->close();
     }
+	
+	public function newOrder($addressId, $userId, $amount)
+    {
+        $mysqli = DBManager::getMysqli();
+        /* @var $mysqli \mysqli */
+
+        $state = 'active';
+		$date = time();
+        $stmt = $mysqli->prepare("INSERT INTO"
+                . " `order`(state, created, user_id, address_id, amount)"
+                . " VALUES"
+                . " (?, CURRENT_TIMESTAMP, ?, ?, ?)");
+        $stmt->bind_param('siii', $state, $userId, $addressId, $amount);
+        $stmt->execute();
+        $stmt->close();
+		
+		$id = $mysqli->insert_id;
+		
+		return $this->getOrder($id);
+    }
+	
+	public function updateOrder($orderId, $amount)
+    {
+        $mysqli = DBManager::getMysqli();
+        /* @var $mysqli \mysqli */
+
+        $stmt = $mysqli->prepare("UPDATE `order` SET amount=$amount WHERE id=$orderId");
+        $stmt->execute();
+        $stmt->close();
+
+        return true;
+    }
+	
+	public function newOrderBook($orderId, $bookId, $amount)
+    {
+        $mysqli = DBManager::getMysqli();
+        /* @var $mysqli \mysqli */
+
+        $state = 'active';
+        $stmt = $mysqli->prepare("INSERT INTO"
+                . " `order_book`(state, amount, order_id, book_id)"
+                . " VALUES"
+                . " (?, ?, ?, ?)");
+        $stmt->bind_param('siii', $state, $amount, $orderId, $bookId);
+        $stmt->execute();
+        $stmt->close();
+
+        return true;
+    }
 }
